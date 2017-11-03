@@ -16,6 +16,21 @@ Installation
 
 `composer require elife/content-negotiator`
 
+Set up
+------
+
+### Silex
+
+```php
+use eLife\ContentNegotiator\Silex\ContentNegotiationProvider;
+
+$app->register(new ContentNegotiationProvider());
+
+$app->get('/path', function (Accept $accept) {
+    return new Response("Negotiated {$accept->getNormalizedValue()}");
+})->before($app['negotiate.accept']('text/plain', 'text/rtf'));
+```
+
 Running the tests
 -----------------
 
