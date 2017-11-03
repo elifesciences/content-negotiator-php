@@ -1,6 +1,8 @@
 eLife content negotiator for PHP
 ================================
 
+[![Build Status](https://alfred.elifesciences.org/buildStatus/icon?job=library-content-negotiator-php)](https://alfred.elifesciences.org/job/library-content-negotiator-php/)
+
 This library provides a wrapper around [Negotiation](https://github.com/willdurand/Negotiation).
 
 Dependencies
