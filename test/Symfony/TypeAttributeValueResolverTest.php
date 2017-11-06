@@ -29,6 +29,7 @@ final class TypeAttributeValueResolverTest extends TestCase
         $argument = new ArgumentMetadata('name', 'type', false, false, null);
 
         $this->assertTrue($resolver->supports($request, $argument));
+        $this->assertSame(['value'], iterator_to_array($resolver->resolve($request, $argument)));
     }
 
     /**
