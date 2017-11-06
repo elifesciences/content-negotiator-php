@@ -23,6 +23,7 @@ Set up
 
 ```php
 use eLife\ContentNegotiator\Silex\ContentNegotiationProvider;
+use Negotiation\Accept;
 
 $app->register(new ContentNegotiationProvider());
 
@@ -30,6 +31,15 @@ $app->get('/path', function (Accept $accept) {
     return new Response("Negotiated {$accept->getNormalizedValue()}");
 })->before($app['negotiate.accept']('text/plain', 'text/rtf'));
 ```
+
+When using `symfony/http-kernel` 3.1+, you can type-hint an argument on your controller with one of the following types and the result of the negotiation will be used:
+
+| Negotiator                          | Type                         |
+| ----------------------------------- | ---------------------------- |
+| `$app['negotiate.accept']`          | `Negotiation\Accept`         |
+| `$app['negotiate.accept_charset']`  | `Negotiation\AcceptCharset`  |
+| `$app['negotiate.accept_encoding']` | `Negotiation\AcceptEncoding` |
+| `$app['negotiate.accept_language']` | `Negotiation\AcceptLanguage` |
 
 Running the tests
 -----------------
