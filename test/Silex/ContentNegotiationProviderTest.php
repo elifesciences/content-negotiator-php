@@ -152,7 +152,7 @@ final class ContentNegotiationProviderTest extends WebTestCase
     {
         $client = $this->createClient();
 
-        $path = interface_exists(ArgumentValueResolverInterface::class) ? '/accept-language' : '/accept-language';
+        $path = interface_exists(ArgumentValueResolverInterface::class) ? '/accept-language-type' : '/accept-language';
         $client->request('GET', $path, [], [], ['HTTP_ACCEPT_LANGUAGE' => $header]);
         $response = $client->getResponse();
 
