@@ -61,7 +61,7 @@ final class ContentNegotiationProvider implements ServiceProviderInterface
         $app['negotiate.accept'] = function () {
             return function (string ...$types) {
                 return function (Request $request, Container $app) use ($types) {
-                    return $app['content_negotiator.accept']->negotiate($request, $types);
+                    $app['content_negotiator.accept']->negotiate($request, $types);
                 };
             };
         };
@@ -69,7 +69,7 @@ final class ContentNegotiationProvider implements ServiceProviderInterface
         $app['negotiate.accept_charset'] = function () {
             return function (string ...$types) {
                 return function (Request $request, Container $app) use ($types) {
-                    return $app['content_negotiator.accept_charset']->negotiate($request, $types);
+                    $app['content_negotiator.accept_charset']->negotiate($request, $types);
                 };
             };
         };
@@ -77,7 +77,7 @@ final class ContentNegotiationProvider implements ServiceProviderInterface
         $app['negotiate.accept_encoding'] = function () {
             return function (string ...$types) {
                 return function (Request $request, Container $app) use ($types) {
-                    return $app['content_negotiator.accept_encoding']->negotiate($request, $types);
+                    $app['content_negotiator.accept_encoding']->negotiate($request, $types);
                 };
             };
         };
@@ -85,7 +85,7 @@ final class ContentNegotiationProvider implements ServiceProviderInterface
         $app['negotiate.accept_language'] = function () {
             return function (string ...$types) {
                 return function (Request $request, Container $app) use ($types) {
-                    return $app['content_negotiator.accept_language']->negotiate($request, $types);
+                    $app['content_negotiator.accept_language']->negotiate($request, $types);
                 };
             };
         };
