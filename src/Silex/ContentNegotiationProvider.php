@@ -91,6 +91,7 @@ final class ContentNegotiationProvider implements ServiceProviderInterface
         };
 
         if (interface_exists(ArgumentValueResolverInterface::class)) {
+            // Support for symfony/http-kernel 3.1+
             $app->extend('argument_value_resolvers', function (array $resolvers) {
                 $resolvers[] = new TypeAttributeValueResolver(Accept::class, self::ATTRIBUTE_ACCEPT);
                 $resolvers[] = new TypeAttributeValueResolver(AcceptCharset::class, self::ATTRIBUTE_ACCEPT_CHARSET);
