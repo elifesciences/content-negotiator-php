@@ -26,36 +26,20 @@ final class ContentNegotiationProvider implements ServiceProviderInterface
 
     public function register(Container $app)
     {
-        $app['negotiator.accept'] = function () {
-            return new Negotiator();
-        };
-
-        $app['negotiator.accept_charset'] = function () {
-            return new CharsetNegotiator();
-        };
-
-        $app['negotiator.accept_encoding'] = function () {
-            return new EncodingNegotiator();
-        };
-
-        $app['negotiator.accept_language'] = function () {
-            return new LanguageNegotiator();
-        };
-
         $app['content_negotiator.accept'] = function () use ($app) {
-            return new ContentNegotiator($app['negotiator.accept'], 'Accept', self::ATTRIBUTE_ACCEPT);
+            return new ContentNegotiator(new Negotiator(), 'Accept', self::ATTRIBUTE_ACCEPT);
         };
 
         $app['content_negotiator.accept_charset'] = function () use ($app) {
-            return new ContentNegotiator($app['negotiator.accept_charset'], 'Accept-Charset', self::ATTRIBUTE_ACCEPT_CHARSET);
+            return new ContentNegotiator(new CharsetNegotiator(), 'Accept-Charset', self::ATTRIBUTE_ACCEPT_CHARSET);
         };
 
         $app['content_negotiator.accept_encoding'] = function () use ($app) {
-            return new ContentNegotiator($app['negotiator.accept_encoding'], 'Accept-Encoding', self::ATTRIBUTE_ACCEPT_ENCODING);
+            return new ContentNegotiator(new EncodingNegotiator(), 'Accept-Encoding', self::ATTRIBUTE_ACCEPT_ENCODING);
         };
 
         $app['content_negotiator.accept_language'] = function () use ($app) {
-            return new ContentNegotiator($app['negotiator.accept_language'], 'Accept-Language', self::ATTRIBUTE_ACCEPT_LANGUAGE);
+            return new ContentNegotiator(new LanguageNegotiator(), 'Accept-Language', self::ATTRIBUTE_ACCEPT_LANGUAGE);
         };
 
         $app['negotiate.accept'] = function () {

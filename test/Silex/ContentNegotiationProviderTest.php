@@ -9,10 +9,6 @@ use Negotiation\Accept;
 use Negotiation\AcceptCharset;
 use Negotiation\AcceptEncoding;
 use Negotiation\AcceptLanguage;
-use Negotiation\CharsetNegotiator;
-use Negotiation\EncodingNegotiator;
-use Negotiation\LanguageNegotiator;
-use Negotiation\Negotiator;
 use Silex\Application;
 use Silex\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,10 +34,6 @@ final class ContentNegotiationProviderTest extends WebTestCase
     public function serviceProvider() : Traversable
     {
         $services = [
-            'negotiator.accept' => Negotiator::class,
-            'negotiator.accept_charset' => CharsetNegotiator::class,
-            'negotiator.accept_encoding' => EncodingNegotiator::class,
-            'negotiator.accept_language' => LanguageNegotiator::class,
             'content_negotiator.accept' => ContentNegotiator::class,
             'content_negotiator.accept_charset' => ContentNegotiator::class,
             'content_negotiator.accept_encoding' => ContentNegotiator::class,
