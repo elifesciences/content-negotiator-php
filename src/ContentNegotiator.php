@@ -21,7 +21,7 @@ final class ContentNegotiator
 
     public function negotiate(Request $request, array $priorities)
     {
-        $header = $request->headers->get($this->header, '*');
+        $header = $request->headers->get($this->header, '*') ?? '*';
 
         $match = $this->negotiator->getBest($header, $priorities);
 
