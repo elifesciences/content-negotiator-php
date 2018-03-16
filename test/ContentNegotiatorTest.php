@@ -43,6 +43,24 @@ final class ContentNegotiatorTest extends TestCase
 
     /**
      * @test
+     * @dataProvider typeNegotiationProvider
+     */
+    public function it_recognises_multiple_accept_headers()
+    {
+        $contentNegotiator = new ContentNegotiator(new Negotiator(), 'Accept', 'accept_type');
+
+        $request = new Request();
+        $request->headers->set('Accept', 'text/rtf', false);
+        $request->headers->set('Accept', 'text/plain', false);
+
+        $contentNegotiator->negotiate($request, ['text/plain', 'text/rtf']);
+
+        $this->assertTrue($request->attributes->has('accept_type'));
+        $this->assertEquals(new Accept('text/plain'), $request->attributes->get('accept_type'));
+    }
+
+    /**
+     * @test
      * @dataProvider languageNegotiationProvider
      */
     public function it_negotiates_other_headers(string $accept = null, string $expected)
