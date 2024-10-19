@@ -10,7 +10,6 @@ use Negotiation\AcceptCharset;
 use Negotiation\AcceptEncoding;
 use Negotiation\AcceptLanguage;
 use Silex\Application;
-use Silex\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;

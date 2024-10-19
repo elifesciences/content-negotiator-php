@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 final class TypeAttributeValueResolverTest extends TestCase
 {
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         if (!interface_exists(ArgumentValueResolverInterface::class)) {
             self::markTestSkipped('Requires symfony/http-kernel >= 3.1');
