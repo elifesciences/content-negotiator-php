@@ -15,8 +15,8 @@
     },
     "require": {
         "php": "^7.0",
-        "symfony/http-foundation": "^2.8.52 || ^3.4.35",
-        "symfony/http-kernel": "^2.7 || ^3.0",
+        "symfony/http-foundation": "^2.8.52 || ^3.4.35 || ^4.4",
+        "symfony/http-kernel": "^2.7 || ^3.0 || ^4.4",
         "willdurand/negotiation": "^2.0.2 || ^3.1"
     },
     "require-dev": {
@@ -24,9 +24,9 @@
         "pimple/pimple": "^3.0",
         "silex/silex": "^2.0",
         "squizlabs/php_codesniffer": "^3.5",
-        "symfony/browser-kit": "^2.7 || ^3.0",
-        "symfony/css-selector": "^2.7 || ^3.0",
-        "symfony/debug": "^2.8 || ^3.0"
+        "symfony/browser-kit": "^2.7 || ^3.0 || ^4.4",
+        "symfony/css-selector": "^2.7 || ^3.0 || ^4.4",
+        "symfony/debug": "^2.8 || ^3.0 || ^4.4"
     },
     "conflict": {
         "sebastian/comparator": "<1.2.3"
