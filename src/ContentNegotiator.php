@@ -22,8 +22,8 @@ final class ContentNegotiator
     public function negotiate(Request $request, array $priorities)
     {
         $header = method_exists($request->headers, 'all') ?
-            $request->headers->all($this->header) :
-            $request->headers->get($this->header, null, false);
+            implode(', ', $request->headers->all($this->header)) :
+            implode(', ', $request->headers->get($this->header, null, false));
         if (empty($header)) {
             $header = '*';
         }
