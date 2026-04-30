@@ -21,7 +21,7 @@ final class ContentNegotiator
 
     public function negotiate(Request $request, array $priorities)
     {
-        $header = implode(', ', $this->getHeader($request));
+        $header = implode(', ', $request->headers->all($this->header));
         if (empty($header)) {
             $header = '*';
         }
@@ -33,22 +33,5 @@ final class ContentNegotiator
         }
 
         $request->attributes->set($this->attribute, $match);
-    }
-
-    /**
-     * We need to account for the slightly different APIs of symfony components between v3, v4 and v5+
-     *
-     * the third argument to HeaderBag::get() being false works below < v5
-     * the first argument to HeaderBag::all() works > v4
-     *
-     * Drop this when dropping support for symfony 3
-     */
-    private function getHeader(Request $request)
-    {
-        $headerBagAllMethod = new \ReflectionMethod($request->headers, 'all');
-        if ($headerBagAllMethod->getNumberOfParameters() > 0) {
-            return $request->headers->all($this->header);
-        }
-        return $request->headers->get($this->header, null, false);
     }
 }

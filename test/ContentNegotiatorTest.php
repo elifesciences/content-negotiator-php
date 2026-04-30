@@ -7,6 +7,8 @@ use Negotiation\Accept;
 use Negotiation\AcceptLanguage;
 use Negotiation\LanguageNegotiator;
 use Negotiation\Negotiator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
@@ -14,10 +16,8 @@ use Traversable;
 
 final class ContentNegotiatorTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider typeNegotiationProvider
-     */
+    #[Test]
+    #[DataProvider('typeNegotiationProvider')]
     public function it_negotiates_a_type(string $accept = null, string $expected)
     {
         $contentNegotiator = new ContentNegotiator(new Negotiator(), 'Accept', 'accept_type');
@@ -31,7 +31,7 @@ final class ContentNegotiatorTest extends TestCase
         $this->assertEquals(new Accept($expected), $request->attributes->get('accept_type'));
     }
 
-    public function typeNegotiationProvider() : Traversable
+    public static function typeNegotiationProvider() : Traversable
     {
         yield 'first type' => ['text/plain', 'text/plain'];
         yield 'second type' => ['text/rtf', 'text/rtf'];
@@ -41,10 +41,7 @@ final class ContentNegotiatorTest extends TestCase
         yield 'no header' => [null, 'text/plain'];
     }
 
-    /**
-     * @test
-     * @dataProvider typeNegotiationProvider
-     */
+    #[Test]
     public function it_recognises_multiple_accept_headers()
     {
         $contentNegotiator = new ContentNegotiator(new Negotiator(), 'Accept', 'accept_type');
@@ -59,10 +56,8 @@ final class ContentNegotiatorTest extends TestCase
         $this->assertEquals(new Accept('text/plain'), $request->attributes->get('accept_type'));
     }
 
-    /**
-     * @test
-     * @dataProvider languageNegotiationProvider
-     */
+    #[Test]
+    #[DataProvider('languageNegotiationProvider')]
     public function it_negotiates_other_headers(string $accept = null, string $expected)
     {
         $contentNegotiator = new ContentNegotiator(new LanguageNegotiator(), 'Accept-Language', 'accept_language');
@@ -76,7 +71,7 @@ final class ContentNegotiatorTest extends TestCase
         $this->assertEquals(new AcceptLanguage($expected), $request->attributes->get('accept_language'));
     }
 
-    public function languageNegotiationProvider() : Traversable
+    public static function languageNegotiationProvider() : Traversable
     {
         yield 'first language' => ['en', 'en'];
         yield 'second language' => ['fr', 'fr'];
@@ -86,9 +81,7 @@ final class ContentNegotiatorTest extends TestCase
         yield 'no header' => [null, 'en'];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_rejects_requests_that_cannot_be_negotiated()
     {
         $contentNegotiator = new ContentNegotiator(new Negotiator(), 'Accept', 'accept_type');
