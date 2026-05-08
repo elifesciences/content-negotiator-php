@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "symfony/http-foundation": "^6.0 || ^7.0",
         "symfony/http-kernel": "^6.0 || ^7.0",
         "willdurand/negotiation": "^3.1"
